@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\repos 2.0v\\text-to-emoji_v1.1\\text-to-emoji_v1.1\\text-to-emoji_v1.1.csproj": {}
+    "D:\\repos 2.0v\\text-to-emoji_v1.1\\text-to-emoji\\text-to-emoji_v1.1\\text-to-emoji_v1.1.csproj": {}
   },
   "projects": {
-    "D:\\repos 2.0v\\text-to-emoji_v1.1\\text-to-emoji_v1.1\\text-to-emoji_v1.1.csproj": {
+    "D:\\repos 2.0v\\text-to-emoji_v1.1\\text-to-emoji\\text-to-emoji_v1.1\\text-to-emoji_v1.1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\repos 2.0v\\text-to-emoji_v1.1\\text-to-emoji_v1.1\\text-to-emoji_v1.1.csproj",
+        "projectUniqueName": "D:\\repos 2.0v\\text-to-emoji_v1.1\\text-to-emoji\\text-to-emoji_v1.1\\text-to-emoji_v1.1.csproj",
         "projectName": "text-to-emoji_v1.1",
-        "projectPath": "D:\\repos 2.0v\\text-to-emoji_v1.1\\text-to-emoji_v1.1\\text-to-emoji_v1.1.csproj",
+        "projectPath": "D:\\repos 2.0v\\text-to-emoji_v1.1\\text-to-emoji\\text-to-emoji_v1.1\\text-to-emoji_v1.1.csproj",
         "packagesPath": "C:\\Users\\yuraa\\.nuget\\packages\\",
-        "outputPath": "D:\\repos 2.0v\\text-to-emoji_v1.1\\text-to-emoji_v1.1\\obj\\",
+        "outputPath": "D:\\repos 2.0v\\text-to-emoji_v1.1\\text-to-emoji\\text-to-emoji_v1.1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\[p\\NuGetPackages"
