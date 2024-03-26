@@ -9,6 +9,10 @@ namespace text_to_emoji_v1._1
         char[] letMap = {
         'à','á','â','ã','ä', 'å','æ','ç','è','é','ê','ë','ì', 'í','î','ï','ð','ñ','ò','ó', 'ô','õ','ö','÷','ø','ù','ú','û','ü','ý', 'þ','ÿ',
         };
+        char[] LetMap =
+        {
+            'À','Á','Â','Ã','Ä', 'Å','Æ','Ç','È','É','Ê','Ë','Ì','Í','Î','Ï','Ð','Ñ','Ò','Ó', 'Ô','Õ','Ö','×','Ø','Ù','Ú','Û','Ü','Ý', 'Þ','ß',
+        };
         public string text = " ";
         public Form1()
         {
@@ -41,9 +45,14 @@ namespace text_to_emoji_v1._1
             foreach (char b in a)
             {
                 int index = Array.IndexOf(letMap, b);
+                int Index = Array.IndexOf(LetMap, b);
                 if (index != -1)
                 {
                     text += emojiMap[index];
+                }
+                if (Index != -1)
+                {
+                    text += emojiMap[Index];
                 }
                 if (b == ' ')
                 {
