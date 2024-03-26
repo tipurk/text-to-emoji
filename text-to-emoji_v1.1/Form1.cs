@@ -2,6 +2,7 @@ namespace text_to_emoji_v1._1
 {
     public partial class Form1 : Form
     {
+        private bool isWindowOpen = true;
         string[] emojiMap = {
         ":a_:", ":b_:", ":v_:", ":g_:", ":d_:", ":e_:", ":zh:", ":z_:", ":i_:", ":ii:", ":k_:", ":l_:", ":m_:", ":n_:", ":o_:", ":p_:", ":r_:", ":s_:", ":t_:", ":u_:", ":f_:", ":h_:", ":ts:", ":ch:", ":sh:", ":shh:",
         ":ewqeqw:", ":iiii:", ":dsa:", ":e_~1:", ":yu:",":ya:",":yo:",":1_:",":2_:",":3_:",":4_:",":5_:",":6_:",":7_:",":8_:",":9_:",":0_:",":ahuetb:",":vopros:",
@@ -87,8 +88,18 @@ namespace text_to_emoji_v1._1
             }
             else if (e.Button == MouseButtons.Left)
             {
-                this.WindowState = FormWindowState.Normal;
-                Show();
+                if (!isWindowOpen)
+                {
+                    this.WindowState = FormWindowState.Normal;
+                    Show();
+                    isWindowOpen = true;
+                }
+                else
+                {
+                    this.WindowState = FormWindowState.Normal;
+                    Close();
+                    isWindowOpen = false;
+                }
             }
         }
     }
