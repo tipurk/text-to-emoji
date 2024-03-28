@@ -1,19 +1,20 @@
+using System.Text.Json;
+using System;
+using System.Xml.Linq;
+using Newtonsoft.Json.Linq;
+using System.Diagnostics;
+using System.Collections;
+using System.Net;
+using System.Text;
+
 namespace text_to_emoji_v1._1
 {
     public partial class Form1 : Form
     {
         private bool isWindowOpen = true;
-        string[] emojiMap = {
-        ":a_:", ":b_:", ":v_:", ":g_:", ":d_:", ":e_:", ":zh:", ":z_:", ":i_:", ":ii:", ":k_:", ":l_:", ":m_:", ":n_:", ":o_:", ":p_:", ":r_:", ":s_:", ":t_:", ":u_:", ":f_:", ":h_:", ":ts:", ":ch:", ":sh:", ":shh:",
-        ":ewqeqw:", ":iiii:", ":dsa:", ":e_~1:", ":yu:",":ya:",":yo:",":1_:",":2_:",":3_:",":4_:",":5_:",":6_:",":7_:",":8_:",":9_:",":0_:",":ahuetb:",":vopros:",
-        };
-        char[] letMap = {
-        'а','б','в','г','д', 'е','ж','з','и','й','к','л','м', 'н','о','п','р','с','т','у', 'ф','х','ц','ч','ш','щ','ъ','ы','ь','э', 'ю','я','ё','1','2','3','4','5','6','7','8','9','0','!','?',
-        };
-        char[] LetMap =
-        {
-        'А','Б','В','Г','Д', 'Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У', 'Ф','Х','Ц','Ч','Ш','Щ','Ъ','Ы','Ь','Э', 'Ю','Я', 'Ё'
-        };
+
+        Dictionary<string, char> alphabet = new Dictionary<string, char>();
+        
         public string text = " ";
         public Form1()
         {
@@ -22,13 +23,23 @@ namespace text_to_emoji_v1._1
             notifyIcon1.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
             notifyIcon1.ContextMenuStrip.Items.Add("Конвертировать из буфера", null, convert);
             notifyIcon1.ContextMenuStrip.Items.Add("Выход", null, close);
+            
+            
+            JObject parsedJson = JObject.Parse(File.ReadAllText("letters.json"));
+            int i = 0;
+            foreach (JProperty property in parsedJson.Properties())
+            {
+                alphabet.Add(property.Name, (char)property.Value);
+                i++;
+                
+            }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(text);
             text = " ";
         }
+
 
         public void close(object sender, EventArgs e)
         {
@@ -43,28 +54,22 @@ namespace text_to_emoji_v1._1
         }
         public void TextConvert(string a)
         {
-            foreach (char b in a)
+            foreach (char c in a)
             {
-                int index = Array.IndexOf(letMap, b);
-                int Index = Array.IndexOf(LetMap, b);
-                if (index != -1)
+                if (c == ' ')
                 {
-                    text += emojiMap[index];
+                    text += c;
                 }
-                if (Index != -1)
+                else
                 {
-                    text += emojiMap[Index];
-                }
-                if (b == ' ')
-                {
-                    text += b;
+                    text += alphabet.FirstOrDefault(x => x.Value == c).Key;
                 }
             }
         }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
-            string a = textBox1.Text;
+            string a = textBox1.Text.ToLower();
             text = "";
             TextConvert(a);
             label1.Text = text;

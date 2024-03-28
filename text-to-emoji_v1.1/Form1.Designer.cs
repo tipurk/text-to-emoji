@@ -38,12 +38,13 @@
             // 
             // button1
             // 
+            button1.BackColor = SystemColors.ControlLight;
             button1.Location = new Point(121, 101);
             button1.Name = "button1";
             button1.Size = new Size(66, 23);
             button1.TabIndex = 0;
             button1.Text = "Copy";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // textBox1

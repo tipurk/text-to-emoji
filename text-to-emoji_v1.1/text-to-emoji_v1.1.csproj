@@ -14,4 +14,8 @@
     <Content Include="Sprite-0001_1.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
 </Project>
