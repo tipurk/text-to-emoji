@@ -33,3 +33,6 @@ D:\repos 2.0v\text-to-emoji_v1.1\text-to-emoji\text-to-emoji_v1.1\obj\Release\ne
 D:\repos 2.0v\text-to-emoji_v1.1\text-to-emoji\text-to-emoji_v1.1\bin\Release\net6.0-windows\Newtonsoft.Json.dll
 D:\repos 2.0v\text-to-emoji_v1.1\text-to-emoji\text-to-emoji_v1.1\obj\Release\net6.0-windows\text-to-emoji_v1.1.csproj.AssemblyReference.cache
 D:\repos 2.0v\text-to-emoji_v1.1\text-to-emoji\text-to-emoji_v1.1\obj\Release\net6.0-windows\text-to-emoji_v1.1.csproj.CopyComplete
+D:\repos 2.0v\text-to-emoji_v1.1\text-to-emoji\text-to-emoji_v1.1\bin\Release\net6.0-windows\System.Net.Http.Formatting.dll
+D:\repos 2.0v\text-to-emoji_v1.1\text-to-emoji\text-to-emoji_v1.1\bin\Release\net6.0-windows\Newtonsoft.Json.Bson.dll
+D:\repos 2.0v\text-to-emoji_v1.1\text-to-emoji\text-to-emoji_v1.1\bin\Release\net6.0-windows\YandexDisk.Client.dll

